@@ -1,0 +1,328 @@
+<?php
+$host = "localhost";
+ $user = "root";
+ $password = '';
+ $db_name = "mini";
+ $con = mysqli_connect($host, $user, $password, $db_name);
+ error_reporting(E_ERROR | E_PARSE);
+ if(mysqli_connect_errno()) {
+ die("Failed to connect with MySQL: ". mysqli_connect_error());
+ }
+ $cse=$_POST["branch1"];
+ $ece=$_POST["branch2"];
+ $it=$_POST["branch3"];
+ $eee=$_POST["branch4"];
+ $mech=$_POST["branch5"];
+ $civ=$_POST["branch6"];
+
+ $ssc_percent=$_POST['ssc_percent'];
+ $inter_percent=$_POST['inter_percent'];
+ $btech_percent=$_POST['btech_percent'];
+ $educational_gaps=$_POST['educational_gaps'];
+ $backlogs=$_POST['backlogs'];
+ /*$sql="SELECT roll,name,branch,ssc_percent,inter_percent,btech_percent FROM
+32
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs'";
+ $result = mysqli_query($con, $sql);*/
+ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+body
+{
+ background-color: white;
+ /*background-image: url("https://mediaexp1.licdn.com/dms/image/C4E1BAQECjtdiVzWnfQ/companybackground_10000/0/1561819162721?e=2147483647&v=beta&t=xxAbAHoSKC85YfkTu
+_PTbidBLAuDj3b6UZyTLBsLaAg");*/
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+.pd{
+padding-bottom:100%;
+font-size: 30px;
+}
+.navbar
+{
+margin: 0px;
+padding:20px;
+background-color:#ff7200;
+opacity:0.6;
+color:black;
+font-family:'Roboto',sans-serif;
+font-style: italic;
+border-radius:20px;
+font-size:25px;
+}
+a
+{
+color:black;
+33
+float:right;
+text-decoration:none;
+font-style:italic;
+padding-right:20px;
+}
+a:hover{
+background-color: orangered;
+color:black;
+border-radius:15px;
+font-size:30px;
+padding-left:10px;
+}
+p
+{
+color:black;
+font-style:italic;
+font-size:30px;
+}
+h1{
+ font-size: 40px;
+ justify-content: center;
+ text-align: center;
+ font-family: 'Sriracha', cursive;
+}
+table {
+ margin: 0 auto;
+ font-size: large;
+ border: 1px solid black;
+ }
+ h1 {
+ text-align: center;
+ color: #006600;
+ font-size: xx-large;
+ font-family: 'Gill Sans', 'Gill Sans MT',
+ ' Calibri', 'Trebuchet MS', 'sans-serif';
+ }
+ td {
+ background-color: #E4F5D4;
+34
+ border: 1px solid black;
+ }
+ th,
+ td {
+ font-weight: bold;
+ border: 1px solid black;
+ padding: 10px;
+ text-align: center;
+ }
+ td {
+ font-weight: lighter;
+ }
+</style>
+</head>
+<body>
+ <center><b class="pd"><font color="black" font-family="Comic Sans MS"
+>GEETHANJALI COLLEGE OF ENGINEERING AND
+TECHNOLOGY</font></b></center>
+<br>
+<div class="navbar">
+<a href="add_drive.html">Add Drive</a>
+<a href="get_students.html">Get StudentsList</a>
+<a href="latest_updates.php">Latest Updates</a>
+<br>
+</div>
+<br>
+<br>
+<h1>STUDENTS LIST</h1>
+<br>
+<br>
+<table border ="1" cellspacing="0" cellpadding="10">
+ <tr>
+ <th>S.No.</th>
+ <th>Roll</th>
+ <th>Name</th>
+ <th>Branch</th>
+ <th>SSC_Percent</th>
+ <th>Inter_Percent</th>
+35
+ <th>Btech_Percent</th>
+ <th>Phone</th>
+ <th>Email id</th>
+
+
+ </tr>
+<?php
+$sn=1;
+if(isset($cse))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$cse'";
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+ <td><?php echo $data['personal_email']; ?> </td>
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+<?php
+if(isset($ece))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$ece'";
+36
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+ <td><?php echo $data['personal_email']; ?> </td>
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+<?php
+if(isset($it))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$it'";
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+37
+ <td><?php echo $data['personal_email']; ?> </td>
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+ <?php
+if(isset($eee))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$eee'";
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+ <td><?php echo $data['personal_email']; ?> </td>
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+ <?php
+if(isset($mech))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$mech'";
+ $result = mysqli_query($con, $sql1);
+38
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+ <td><?php echo $data['personal_email']; ?> </td>
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+ <?php
+if(isset($civ))
+ {
+ $sql1="SELECT
+roll,name,branch,ssc_percent,inter_percent,btech_percent,phone,personal_email FROM
+student where ssc_percent>='$ssc_percent' and inter_percent>='$inter_percent' and
+btech_percent>='$btech_percent' and educational_gaps<='$educational_gaps' and
+backlogs<='$backlogs' and branch='$civ'";
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+
+ while($data = mysqli_fetch_assoc($result)) {
+ ?>
+ <tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['roll']; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['branch']; ?> </td>
+ <td><?php echo $data['ssc_percent']; ?> </td>
+ <td><?php echo $data['inter_percent']; ?> </td>
+ <td><?php echo $data['btech_percent']; ?> </td>
+ <td><?php echo $data['phone']; ?> </td>
+ <td><?php echo $data['personal_email']; ?> </td>
+39
+ <tr>
+ <?php
+ $sn++;}
+ }
+ }?>
+ </table>
+</div>
+</body>
+</html>
