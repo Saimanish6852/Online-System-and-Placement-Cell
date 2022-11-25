@@ -1,0 +1,175 @@
+<?php
+$insert=false;
+$update=false;
+ if(isset($_POST['submit']))
+ {
+$host = "localhost";
+ $user = "root";
+ $password = '';
+ $db_name = "mini";
+ $con = mysqli_connect($host, $user, $password, $db_name);
+ error_reporting(E_ERROR | E_PARSE);
+ if(mysqli_connect_errno()) {
+ die("Failed to connect with MySQL: ". mysqli_connect_error());
+ }
+
+
+ $roll=$_POST['roll'];
+ $name=$_POST['name'];
+ $branch=$_POST['branch'];
+ $gender=$_POST['gender'];
+ $dob=$_POST['dob'];
+ $phone=$_POST['phone'];
+ $official_email=$_POST['official_email'];
+ $personal_email=$_POST['personal_email'];
+ $father_name=$_POST['father_name'];
+ $father_contact=$_POST['father_contact'];
+ $ssc_percent=$_POST['ssc_percent'];
+ $ssc_yop=$_POST['ssc_yop'];
+ $inter_percent=$_POST['inter_percent'];
+ $inter_yop=$_POST['inter_yop'];
+22
+ $btech_percent=$_POST['btech_percent'];
+ $btech_yop=$_POST['btech_yop'];
+ $educational_gaps=$_POST['educational_gaps'];
+ $backlogs=$_POST['backlogs'];
+
+ $sql1="Select * from student where roll='$roll'";
+ $result = mysqli_query($con, $sql1);
+ if (mysqli_num_rows($result) > 0)
+ {
+ $sql="UPDATE student set btech_percent='$btech_percent',backlogs='$backlogs'
+where roll='$roll'";
+ if($con->query($sql)==true)
+ {
+ //echo "sucessfully updated";
+ $update=true;
+ }
+ else{
+ echo "ERROR: $sql <br> $con->error";
+ }
+ }
+ else
+ {
+ $sql="INSERT INTO mini.student
+(id,roll,name,branch,gender,dob,phone,official_email,personal_email,father_name,father_co
+ntact,ssc_percent,ssc_yop,inter_percent,inter_yop,btech_percent,btech_yop,educational_gap
+s,backlogs)
+VALUES('$id','$roll','$name','$branch','$gender','$dob','$phone','$official_email','$personal_
+email','$father_name','$father_contact','$ssc_percent','$ssc_yop','$inter_percent','$inter_yop',
+'$btech_percent','$btech_yop','$educational_gaps','$backlogs')";
+ if($con->query($sql)==true)
+ {
+ //echo "successfully inserted";
+ $insert=true;
+ }
+ else{
+ echo "ERROR: $sql <br> $con->error";
+ }
+ }
+
+ $con->close();
+}
+?>
+23
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Student Profile</title>
+ <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap"
+rel="stylesheet">
+ <link rel="stylesheet" href="fillDetailsStyle.css">
+</head>
+<body>
+ <div class="navbar">
+ <a href="fill_profile.html">Fill Profile</a>
+ <a href="latest_updates_student.php">Latest Updates</a>
+ <br>
+ </div>
+ <div class="container">
+ <h1>FILL YOUR PROFILE</h1>
+ <form action="fill_profile.php" method="post" enctype="multipart/form-data">
+ <label for="roll">Roll Number</label>
+ <input type="text" name="roll" id="roll" placeholder="enter your roll number">
+ <label for = "name">Name</label>
+ <input type="text" name="name" id="name" placeholder="enter your name">
+
+ <label for = "branch">Branch</label>
+ <select name ="branch">
+ <option value="select your branch">select your branch</option>
+ <option value="CSE">CSE</option>
+ <option value="ECE">ECE</option>
+ <option value="IT">IT</option>
+ <option value="EEE">EEE</option>
+ <option value="MECHANICAL">MECHANICAL</option>
+ <option value="CIVIL">CIVIL</option>
+ </select>
+ <label for = "gender">Gender</label>
+ <select name ="gender">
+ <option value="selec the option">Select the Option</option>
+ <option value="Male">Male</option>
+ <option value="Female">Female</option>
+ </select>
+
+24
+ <label for = "date">Date Of Birth</label>
+ <input type="date" name="dob" id="dob" placeholder="date of Birth">
+ <label for = "phone">Phone</label>
+ <input type="phone" name="phone" id="phone" placeholder="enter your phone
+number">
+ <label for = "official_email">Official Email ID</label>
+ <input type="email" name="official_email" id="official_email" placeholder="enter
+your official email id">
+ <label for = "personal_email">Personal Email ID</label>
+ <input type="email" name="personal_email" id="personal_email" placeholder="enter
+your personal email id">
+ <label for = "father_name">Father's Name</label>
+ <input type="text" name="father_name" id="father_name" placeholder="enter your
+father's name">
+ <label for = "father_contact">Father's Contact Number</label>
+ <input type="phone" name="father_contact" id="father_contact" placeholder="enter
+your father's contact number">
+ <label for="ssc_percent">SSC/10th Percentage</label>
+ <input type="number" name="ssc_percent" id="ssc_percent" placeholder="enter your
+ssc percentage">
+ <label for="ssc_yop">SSC/10th YOP</label>
+ <input type="number" name="ssc_yop" id="ssc_yop" placeholder="enter your ssc
+year of passing">
+ <label for="inter_percent">Inter/12th/Diploma Percentage</label>
+ <input type="number" name="inter_percent" id="inter_percent" placeholder="enter
+your inter percentage">
+
+ <label for="inter_yop">Inter/12th/Diploma YOP</label>
+ <input type="number" name="inter_yop" id="inter_yop" placeholder="enter your inter
+year of passing">
+ <label for="btech_percent">B.Tech Percentage</label>
+ <input type="number" name="btech_percent" id="btech_percent" placeholder="enter
+your btech percentage">
+
+ <label for="btech_yop">B.Tech YOP</label>
+25
+ <input type="number" name="btech_yop" id="btech_yop" placeholder="enter your
+btech year of passing">
+ <label for="educational_gaps">Educational Gaps</label>
+ <input type="number" name="educational_gaps" id="educational_gaps"
+placeholder="enter the educational gaps if any">
+ <label for="backlogs">Active Backlogs</label>
+ <input type="number" name="backlogs" id="backlogs" placeholder="enter the no. of
+active backlogs">
+ <button class = "btn" name="submit">Submit</button>
+ </form>
+ <?php
+ if($insert==true){
+ echo "<p class='submitmsg'>your details are filled!</p>";
+ }
+ else if($update==true)
+ {
+ echo "<p class='submitmsg'>your details are updated!</p>";
+ }
+ ?>
+</div>
+</body>
+</html>
