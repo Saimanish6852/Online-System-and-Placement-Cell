@@ -1,0 +1,168 @@
+<?php
+$insert=false;
+ if(isset($_POST['add']))
+ {
+$host = "localhost";
+ $user = "root";
+ $password = '';
+ $db_name = "mini";
+ $con = mysqli_connect($host, $user, $password, $db_name);
+ error_reporting(E_ERROR | E_PARSE);
+ if(mysqli_connect_errno()) {
+ die("Failed to connect with MySQL: ". mysqli_connect_error());
+ }
+
+
+26
+ $name=$_POST['name'];
+ $date=$_POST['date'];
+ $details=$_POST['details'];
+ $output=nl2br($details);
+ $sql="INSERT INTO mini.add_drive VALUES('$id','$name','$date','$output')";
+ if($con->query($sql)==true)
+ {
+ $insert=true;
+ //echo "successfully inserted";
+ }
+ else
+ {
+ echo "ERROR: $sql <br> $con->error";
+ }
+ $con->close();
+ }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>add drive</title>
+<!--<link rel="stylesheet" href="fillDetailsStyle.css">-->
+<style>
+ *{
+ margin:8px;
+ padding:0px;
+ box-sizing: border-box;
+ /*background-color: mintcream;*/
+}
+.navbar
+{
+margin: 0px;
+padding:20px;
+background-color:#ff7200;
+opacity:0.6;
+color:black;
+font-family:'Roboto',sans-serif;
+font-style: italic;
+border-radius:20px;
+font-size:25px;
+}
+27
+a{
+color:black;
+float:right;
+text-decoration:none;
+font-style:italic;
+padding-right:20px;
+justify-content: center;
+}
+a:hover{
+background-color:orangered;
+color:black;
+border-radius:15px;
+font-size:30px;
+padding-left:10px;
+}
+.container{
+
+ max-width:50%;
+ padding:20px;
+ margin:auto;
+}
+.container h1{
+ font-size: 40px;
+ justify-content: center;
+ text-align: center;
+ font-family: 'Sriracha', cursive;
+}
+input{
+ border:2px solid black;
+ border-radius:6px ;
+ outline:none;
+ font-size:16px;
+ width:100%;
+ margin:0px;
+ padding:8px
+}
+label{
+ font-size: 20px;
+ width:100%;
+ margin:0px;
+ padding:8px;
+}
+28
+form{
+
+ display:flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction:column ;
+}
+.btn {
+color:black;
+size: 25px;
+background:#ff7200;
+font-size: 18px;
+padding: 8px 12px;
+border: 3px solid black;
+border-radius: 14px;
+cursor: pointer;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+.submitmsg{
+ font-size:40px ;
+ color:orangered;
+ text-align: center;
+ font-family: 'Sriracha', cursive;
+}
+.pd{
+padding-bottom:100%;
+font-size: 30px;
+}
+</style>
+</head>
+<body>
+<br>
+ <center><b class="pd"><font color="black" font-family="Comic Sans MS"
+>GEETHANJALI COLLEGE OF ENGINEERING AND
+TECHNOLOGY</font></b></center>
+<br>
+<div class="navbar">
+
+29
+ <a href="add_drive.html">Add Drive</a>
+ <a href="get_students.html">Get StudentsList</a>
+ <a href="latest_updates.php">Latest Updates</a>
+ <br>
+</div>
+<div class="container">
+ <h1>ADD DRIVE </h1>
+ <form action="add_drive.php" method="post">
+ <label for="name">Name</label>
+ <input type="text" name="name" id="name" placeholder="enter company name">
+ <label for = "date">Date</label>
+ <input type="date" name="date" id="date" placeholder="enter the drive date">
+ <label for = "details">Details</label>
+ <textarea name="details" id="details" style="white-space: pre-wrap;" rows="40"
+cols="90"></textarea>
+ <button class="btn" name="add">ADD</button>
+ </form>
+ <?php
+ if($insert==true){
+ echo "<p class='submitmsg'>Drive is added!</p>";
+ }
+ ?>
+
+</div>
+</body>
+</html>
