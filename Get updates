@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--<script type="text/javascript" src="validate.js"></script>-->
+<meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Get Students</title>
+ <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap"
+rel="stylesheet">
+ <link rel="stylesheet" href="get_students.css">
+</head>
+<body>
+30
+ <center><b class="pd"><font color="black" font-family="Comic Sans MS"
+>GEETHANJALI COLLEGE OF ENGINEERING AND
+TECHNOLOGY</font></b></center>
+<br>
+ <div class="navbar">
+ <a href="add_drive.html">Add Drive</a>
+ <a href="get_students.html">Get StudentsList</a>
+ <a href="latest_updates.php">Latest Updates</a>
+ <br>
+ </div>
+ <div class="container">
+ <h1>GET STUDENTS</h1>
+ <form action="get_students.php" method="post">
+ <label for = "branch">Branch</label><br/>
+ <input type="checkbox" name='branch1' value="CSE"> CSE <br/>
+ <input type="checkbox" name='branch2' value="ECE"> ECE <br/>
+ <input type="checkbox" name='branch3' value="IT"> IT <br/>
+ <input type="checkbox" name='branch4' value="EEE"> EEE <br/>
+ <input type="checkbox" name='branch5' value="MECHANICAL"> MECHANICAL
+<br/>
+ <input type="checkbox" name='branch6' value="CIVIL"> CIVIL <br/>
+ <br/>
+
+ <label for="ssc_percent">SSC/10th Percentage</label><br/>
+ <input type="number" name="ssc_percent" id="ssc_percent" placeholder="enter the
+required ssc percentage">
+ <br/><br/>
+ <label for="inter_percent">Inter/12th/Diploma Percentage</label><br/>
+ <input type="number" name="inter_percent" id="inter_percent" placeholder="enter
+the required inter percentage">
+ <br/><br/>
+ <label for="btech_percent">B.Tech Percentage</label><br/>
+ <input type="number" name="btech_percent" id="btech_percent" placeholder="enter
+the required btech percentage">
+ <br/><br/>
+ <label for="educational_gaps">Educational Gaps</label><br/>
+ <input type="number" name="educational_gaps" id="educational_gaps"
+placeholder="enter how much educational gap is allowed">
+ <br/><br/>
+ <label for="backlogs">Active Backlogs</label><br/>
+31
+ <input type="number" name="backlogs" id="backlogs" placeholder="enter how many
+active backlogs are allowed">
+ <br/><br/>
+
+ <button class = "btn">Submit</button>
+
+</form>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>
