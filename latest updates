@@ -1,0 +1,142 @@
+<?php
+$host = "localhost";
+ $user = "root";
+ $password = '';
+ $db_name = "mini";
+ $con = mysqli_connect($host, $user, $password, $db_name);
+ error_reporting(E_ERROR | E_PARSE);
+ if(mysqli_connect_errno()) {
+ die("Failed to connect with MySQL: ". mysqli_connect_error());
+ }
+ $sql="SELECT * FROM add_drive";
+ $result = mysqli_query($con, $sql);
+ ?>
+18
+<!DOCTYPE html>
+<html>
+<head>
+<title>updates</title>
+<style>
+body
+{
+ background-color: white;
+ /*background-image: url("https://mediaexp1.licdn.com/dms/image/C4E1BAQECjtdiVzWnfQ/companybackground_10000/0/1561819162721?e=2147483647&v=beta&t=xxAbAHoSKC85YfkTu
+_PTbidBLAuDj3b6UZyTLBsLaAg");*/
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+.pd{
+padding-bottom:100%;
+font-size: 30px;
+}
+.navbar
+{
+margin: 0px;
+padding:20px;
+background-color:#ff7200;
+opacity:0.6;
+color:black;
+font-family:'Roboto',sans-serif;
+font-style: italic;
+border-radius:20px;
+font-size:25px;
+}
+a
+{
+color:black;
+float:right;
+text-decoration:none;
+font-style:italic;
+padding-right:20px;
+}
+19
+a:hover{
+background-color: orangered;
+color:black;
+border-radius:15px;
+font-size:30px;
+padding-left:10px;
+}
+p
+{
+color:black;
+font-style:italic;
+font-size:30px;
+}
+table {
+ margin: 0 auto;
+ font-size: large;
+ border: 1px solid black;
+ }
+ h1 {
+ text-align: center;
+ color: #006600;
+ font-size: xx-large;
+ font-family: 'Gill Sans', 'Gill Sans MT',
+ ' Calibri', 'Trebuchet MS', 'sans-serif';
+ }
+ td {
+ background-color: #E4F5D4;
+ border: 1px solid black;
+ }
+ th,
+ td {
+ font-weight: bold;
+ border: 1px solid black;
+ padding: 10px;
+ text-align: left;
+ }
+ td {
+ font-weight: lighter;
+20
+ }
+</style>
+</head>
+<body>
+ <br>
+ <center><b class="pd"><font color="black" font-family="Comic Sans MS"
+>GEETHANJALI COLLEGE OF ENGINEERING AND
+TECHNOLOGY</font></b></center>
+<br>
+<br>
+<div class="navbar">
+<a href="add_drive.html">Add Drive</a>
+<a href="get_students.html">Get StudentsList</a>
+<a href="latest_updates.php">Latest Updates</a>
+<br>
+</div>
+<br>
+<br>
+<table border ="1" cellspacing="0" cellpadding="10">
+ <tr>
+ <th>S.No.</th>
+ <th>Name</th>
+ <th>Drive Date</th>
+ <th>Details</th>
+
+ </tr>
+<?php
+if (mysqli_num_rows($result) > 0)
+{
+ $sn=1;
+ while($data = mysqli_fetch_assoc($result)) {
+?>
+<tr>
+ <td><?php echo $sn; ?> </td>
+ <td><?php echo $data['name']; ?> </td>
+ <td><?php echo $data['date']; ?> </td>
+ <td><?php echo $data['details']; ?> </td>
+ <tr>
+<?php
+ $sn++;}
+ }
+ else
+21
+ { ?>
+ <tr>
+ <td colspan="8">No data found</td>
+ </tr>
+<?php } ?>
+ </table>
+</body>
+</html>
